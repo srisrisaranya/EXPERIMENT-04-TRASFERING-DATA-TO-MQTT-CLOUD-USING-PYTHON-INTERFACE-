@@ -1,16 +1,14 @@
-### NAME:
-### ROLL NO :
-### DEPARTMENT 
-### DATE
+## EXPERIMENT-04-TRASFERING-DATA-TO-MQTT-CLOUD-USING-PYTHON-INTERFACE
 
-
-
-## EXPERIMENT-04-TRASFERING-DATA-TO-MQTT-CLOUD-USING-PYTHON-INTERFACE-
-
+### NAME: SARANYA S
+### ROLL NO : 212223110044
+### DEPARTMENT: B.E. CSE-IOT
+### DATE: 
 
 
 ## AIM:
 To transfer data from a Python script to an MQTT cloud server (HiveMQ Cloud) using the MQTT protocol. 
+
 ## APPARATUS/SOFTWARE REQUIRED: 
 1.HiveMQ Cloud account
 Python installed on your system
@@ -138,15 +136,32 @@ Run the Python script.
 
 Check if the message appears in the HiveMQ Web Client.
 ## PROGRAM
-[
+```
+import paho.mqtt.client as mqtt
+import time
+import random
+import ssl
+broker="78a49f8d189f436ab4ee488cbc24b67f.s1.eu.hivemq.cloud"
+port=8883
+topic="iot1/demo/sensor"
+username="hivemq.webclient.1761388796970"
+password="7v%G<,XI3z5@aWAnM4ey"
+client=mqtt.Client(client_id="publisher")
+client.username_pw_set(username,password)
+client.tls_set(tls_version=ssl.PROTOCOL_TLS)
+client.connect(broker,port)
+while True:
+    temperature=round(random.uniform(20.0,30.0),2)
+    humidity=round(random.uniform(30.0,70.0),2)
+    payload=f"Temperature:{temperature:.2f}C,Humidity: {humidity:.2f}%"
+    client.publish(topic,payload)
+    print(f"published: {payload}->{topic}")
+    time.sleep(5)
 
+```
 
-
-
-
-]
-
-### OUTPUT SCREENSHOTS
+### OUTPUT SCREENSHOTS:
+<img width="1915" height="930" alt="image" src="https://github.com/user-attachments/assets/f901461d-70cb-465c-8060-02a43d63210d" />
 
 
 
